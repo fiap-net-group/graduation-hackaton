@@ -14,16 +14,11 @@ namespace Graduation.Hackaton.VideoProcessing.API.Controllers.Core;
 public class ApiController : ControllerBase
 {
     private readonly int _cancelRequisitionAfterInSeconds;
-    private readonly IProcessVideoUseCase _processVideoUseCase;
-    private readonly ISendVideoToProcessUseCase _sendVideoToProcessUseCase;
-    private readonly IUpdateVideoProcessingUseCase _updateVideoProcessingUseCase;
 
-    public ApiController(IConfiguration configuration, IProcessVideoUseCase processVideoUseCase, ISendVideoToProcessUseCase sendVideoToProcessUseCase, IUpdateVideoProcessingUseCase updateVideoProcessingUseCase)
+    public ApiController(IConfiguration configuration)
     {
         _cancelRequisitionAfterInSeconds = configuration.GetValue<int>("CancelRequisitionAfterInSeconds", 30);
-        _processVideoUseCase = processVideoUseCase;
-        _sendVideoToProcessUseCase = sendVideoToProcessUseCase;
-        _updateVideoProcessingUseCase = updateVideoProcessingUseCase;
+       
     }
 
     protected CancellationToken AsCombinedCancellationToken(CancellationToken requestCancellationToken)
@@ -33,28 +28,5 @@ public class ApiController : ControllerBase
         combinedCancellationTokens.CancelAfter(_cancelRequisitionAfterInSeconds);
 
         return combinedCancellationTokens.Token;
-    }
-
-    protected async Task<IActionResult> ProcessVideoAsync(ProcessVideoInput input, CancellationToken cancellationToken)
-    {
-        var output = await _processVideoUseCase.ProcessAsync(input, cancellationToken);
-
-        return Ok(output);
-    }
-
-    protected async Task<IActionResult> SendVideoToProcessAsync(SendVideoToProcessInput input, CancellationToken cancellationToken)
-    {
-        // var output = await _sendVideoToProcessUseCase.SendVideoAsync(input, cancellationToken);
-
-        // return Ok(output);
-        return Ok();
-    }
-
-    protected async Task<IActionResult> UpdateVideoProcessingAsync(UpdateVideoProcessingInput input, CancellationToken cancellationToken)
-    {
-        // var output = await _updateVideoProcessingUseCase.UpdateAsync(input, cancellationToken);
-
-        // return Ok(output);
-        return Ok();
     }
 }

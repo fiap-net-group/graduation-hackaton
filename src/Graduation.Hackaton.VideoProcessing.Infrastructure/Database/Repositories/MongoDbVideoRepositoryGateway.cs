@@ -32,7 +32,7 @@ namespace Graduation.Hackaton.VideoProcessing.Infrastructure.Database.Repositori
                 {
                     Enabled = false
                 } :
-                entity.AsEntity();
+                entity;
         }
 
         public async Task<VideoEntity> UpdateAsync(VideoEntity video, CancellationToken cancellationToken)

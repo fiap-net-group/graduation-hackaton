@@ -1,0 +1,70 @@
+version: '3.3'
+name: graduation-hackaton
+services:
+  worker-production:
+    image: ${DOCKER_REGISTRY-}graduation-hackaton-worker-production
+    networks:
+      - backend
+    build:
+      context: ../
+      dockerfile: ./src/Graduation.Hackaton.VideoProcessing.Worker/Dockerfile
+    container_name: worker-production
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 500M
+
+  api-production:
+    image: ${DOCKER_REGISTRY-}graduation-hackaton-api-production
+    networks:
+      - backend
+    build:
+      context: ../
+      dockerfile: ./src/Graduation.Hackaton.VideoProcessing.API/Dockerfile
+    container_name: api-production
+    depends_on:
+      - worker-production
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5015:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 100M
+
+  mvc-production:
+    image: ${DOCKER_REGISTRY-}graduation-hackaton-mvc-production
+    networks:
+      - backend
+    build:
+      context: ../
+      dockerfile: ./src/Graduation.Hackaton.VideoProcessing.MVC/Dockerfile
+    container_name: mvc-production
+    depends_on:
+      - api-production
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5020:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    deploy:
+      
+
+networks:
+  backend:
+    driver: bridge

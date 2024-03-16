@@ -27,30 +27,15 @@ namespace Graduation.Hackaton.VideoProcessing.Worker
                 .ConfigureAppConfiguration(context =>
                 {
                     context.AddConfiguration(configuration);
-
                 })
                 .ConfigureServices((context, services) =>
                 {
-                    //services.AddHostedService<Worker>();
+                    services.AddHostedService<Worker>();
                     services.AddWorkerApplicationConfiguration();
                     services.AddLoggingGateway();
-                    services.AddFileServer(context.Configuration);
-
-                    var input = new ProcessVideoInput
-                    {
-                        Entity = new Domain.Entities.VideoEntity
-                        {
-                            VideoPath = "Marvel_DOTNET_CSHARP.mp4",
-                            Name = "Marvel_DOTNET_CSHARP"
-                        },
-                        IntervalInSeconds = 20
-                    };
-
-                    var provider = services.BuildServiceProvider();
-                    
-                    var service = provider.GetRequiredService<IProcessVideoUseCase>();
-                    service.ProcessAsync(input, CancellationToken.None).Wait();
-                    //services.AddWorkerEventGateway<ProcessVideoConsumer>(context.Configuration, typeof(ProcessVideoConsumer), nameof(ProcessVideoEvent));
+                    services.AddFileServer(configuration);
+                    services.AddVideoProcessingApiIntegration(configuration);
+                    services.AddWorkerEventGateway<ProcessVideoConsumer>(context.Configuration, typeof(ProcessVideoConsumer), nameof(ProcessVideoEvent));
                 })
                 .Build();
 

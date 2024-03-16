@@ -1,14 +1,19 @@
 ﻿using Graduation.Hackaton.VideoProcessing.API.DependencyInjection.Swagger;
+using Graduation.Hackaton.VideoProcessing.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Graduation.Hackaton.VideoProcessing.API.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddApiDependencyInjection(this IServiceCollection services)
+        public static IServiceCollection AddApiDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             return services.AddApiConfiguration()
-                .AddSwaggerConfiguration();
+                .AddSwaggerConfiguration()
+                .AddLoggingGateway()
+                .AddFileServer(configuration)
+                .AddDatabase(configuration)
+                .AddApiEventGateway(configuration);
         }
 
         private static IServiceCollection AddApiConfiguration(this IServiceCollection services)
