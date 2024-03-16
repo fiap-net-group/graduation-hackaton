@@ -1,13 +1,13 @@
 ﻿using Graduation.Hackaton.VideoProcessing.Domain.Gateways.VideoProcessingApi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Graduation.Hackaton.VideoProcessing.Domain.Gateways.VideoProcessingApi.Boundaries;
 
 namespace Graduation.Hackaton.VideoProcessing.Infrastructure.Integrations
 {
     public class VideoProcessingApiGateway : IVideoProcessingApiGateway
     {
+        public Task UpdateAsync(UpdateVideoInput input, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
