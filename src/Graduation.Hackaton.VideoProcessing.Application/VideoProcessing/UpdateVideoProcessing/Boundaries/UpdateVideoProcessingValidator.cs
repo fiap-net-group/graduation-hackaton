@@ -14,7 +14,7 @@ namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.Update
         {
             RuleFor(req => req.value.Id).NotEmpty().WithMessage(ResponseMessage.InvalidId.ToString());
             RuleFor(req => req.value.ImagesPath).NotEmpty().WithMessage(ResponseMessage.InvalidStatus.ToString());
-            RuleFor(req => req.value.Status).NotEmpty().WithMessage(ResponseMessage.InvalidImagesPath.ToString());
+            RuleFor(req => req.value.Status).NotEmpty().WithMessage(ResponseMessage.InvalidStatus.ToString());
             RuleFor(req => req.value.UpdatedAt).NotEmpty();
             
         }
