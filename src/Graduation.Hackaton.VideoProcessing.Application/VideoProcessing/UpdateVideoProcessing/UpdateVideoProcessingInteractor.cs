@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.UpdateVideoProcessing
 {
-    internal class UpdateVideoProcessingInteractor
+    public class UpdateVideoProcessingInteractor
     {
     }
 }

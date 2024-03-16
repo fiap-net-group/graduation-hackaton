@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Graduation.Hackaton.VideoProcessing.Application\Graduation.Hackaton.VideoProcessing.Application.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.SendVideoToProcess.Boundaries
 {
-    internal class SendVideoToProcessInput
+    public class SendVideoToProcessInput
     {
     }
 }
