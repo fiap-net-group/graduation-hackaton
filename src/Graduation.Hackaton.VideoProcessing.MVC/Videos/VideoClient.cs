@@ -4,6 +4,9 @@ using Graduation.Hackaton.VideoProcessing.MVC.Videos.Interfaces;
 using Graduation.Hackaton.VideoProcessing.MVC.Client;
 using System.Text.Json;
 using Polly.Retry;
+using static System.Net.Mime.MediaTypeNames;
+using System.Text;
+using Graduation.Hackaton.VideoProcessing.MVC.Models.Request;
 
 namespace Graduation.Hackaton.VideoProcessing.MVC.Videos
 {
@@ -39,9 +42,24 @@ namespace Graduation.Hackaton.VideoProcessing.MVC.Videos
             }
         }
 
-        public async Task<BaseResponse> UploadVideo(IFormFile video, string description, string name, CancellationToken token)
+        public async Task<BaseResponse> UploadVideo(IFormFile video, string description, CancellationToken token)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, _uploadVideoUrl);
+            await using var videoStram = video.OpenReadStream();
+            using var bynaryReader = new BinaryReader(videoStram);
+            var data = bynaryReader.ReadBytes((int)videoStram.Length);
+
+            var videoContent = JsonSerializer.Serialize(new UploadVideoViewModel
+            {
+                Name = video.FileName,
+                VideoUrl = Path.GetExtension(video.FileName),
+                VideoByte = data
+            },
+            _serializeOptions);
+
+            var request = new HttpRequestMessage(HttpMethod.Post, _uploadVideoUrl)
+            {
+                Content = new StringContent(videoContent, Encoding.UTF8, "application/json")
+            };
 
             try
             {
