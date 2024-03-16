@@ -20,11 +20,10 @@ namespace Graduation.Hackaton.VideoProcessing.API.Controllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(SendVideoToProcessInput input, CancellationToken cancellationToken)
+        public async Task<IActionResult> Post(IFormFile file, CancellationToken cancellationToken)
         {
-            // var output = await _sendVideoToProcessUseCase.SendVideoAsync(input, cancellationToken);
+            await _sendVideoToProcessUseCase.Se
 
-            // return Ok(output);
             return Ok();
         }
 

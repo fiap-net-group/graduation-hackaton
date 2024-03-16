@@ -1,9 +1,11 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using FFMpegCore;
+using Graduation.Hackaton.VideoProcessing.Domain;
 using Graduation.Hackaton.VideoProcessing.Domain.Gateways.File;
 using Graduation.Hackaton.VideoProcessing.Domain.Gateways.File.Boundaires;
 using Graduation.Hackaton.VideoProcessing.Domain.Gateways.Logger;
+using Microsoft.AspNetCore.Http;
 using System.Drawing;
 
 namespace Graduation.Hackaton.VideoProcessing.Infrastructure.File
@@ -72,5 +74,19 @@ namespace Graduation.Hackaton.VideoProcessing.Infrastructure.File
         }
 
         private static string GetVideoPath(GetVideoInfoOutput videoInfo) => Path.Combine(Path.GetTempPath(), videoInfo.FileName);
+
+        public async Task<UploadVideoOutput> UploadFileAsync(IFormFile file, CancellationToken cancellationToken)
+        {
+            var blobFile = _client.GetBlobClient(file.FileName);
+            if (blobFile.Exists())
+            {
+                return new UploadVideoOutput(false, string.Empty);
+            }
+
+            var result = await _client.UploadBlobAsync(file.FileName, file.OpenReadStream(), cancellationToken: cancellationToken);
+
+            return new UploadVideoOutput(true, file.FileName);
+
+        }
     }
 }
