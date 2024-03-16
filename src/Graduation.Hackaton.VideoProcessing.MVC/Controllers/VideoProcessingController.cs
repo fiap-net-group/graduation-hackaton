@@ -26,8 +26,12 @@ namespace Graduation.Hackaton.VideoProcessing.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveVideo(UploadVideoProcessingViewModel uploadVideoProcessingViewModel)
+        [DisableRequestSizeLimit]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveVideo(UploadVideoProcessingViewModel uploadVideoProcessingViewModel,CancellationToken cancellationToken)
         {
+            _logger.LogDebug("Initial - SaveVideo");
+
             if (!ModelState.IsValid)
             {
                 _logger.LogDebug("Invalid SaveVideo");
@@ -35,19 +39,25 @@ namespace Graduation.Hackaton.VideoProcessing.MVC.Controllers
                 return View(nameof(Send), uploadVideoProcessingViewModel);
             }
 
-            await _uploadVideo.RunAsync(uploadVideoProcessingViewModel, CancellationToken.None);
+            await _uploadVideo.RunAsync(uploadVideoProcessingViewModel, cancellationToken);
+
+            _logger.LogDebug("Final - SaveVideo");
 
             return RedirectToAction(nameof(List));
         }
 
         public async Task<IActionResult> List()
         {
+            _logger.LogDebug("Initial - List");
+
             var list = await _listVideo.RunAsync(CancellationToken.None);
 
             var model = new DetailsUploadsViewModel
             {
                 Videos = list.Value
             };
+
+            _logger.LogDebug("Final - List");
             
             return View(model);
         }

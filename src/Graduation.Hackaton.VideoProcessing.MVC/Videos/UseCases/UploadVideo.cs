@@ -14,7 +14,7 @@ namespace Graduation.Hackaton.VideoProcessing.MVC.Videos.UseCases
         }
         public async Task<BaseResponse> RunAsync(UploadVideoProcessingViewModel model, CancellationToken cancellationToken)
         {
-            var videoResponse = await _client.UploadVideo(model.VideoFile, model.Description,model.Name, cancellationToken);
+            var videoResponse = await _client.UploadVideo(model.VideoFile, model.Description, cancellationToken);
 
             return videoResponse;
         }
