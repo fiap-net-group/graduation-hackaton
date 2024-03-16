@@ -44,7 +44,7 @@ namespace Graduation.Hackaton.VideoProcessing.Infrastructure
             return services;
         }
 
-        public static IServiceCollection AddApiEventManager(this IServiceCollection services, IConfiguration configuration, Type workerType, string queueName, bool isWorker)
+        public static IServiceCollection AddApiEventGateway(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IEventSenderGateway, MassTransitSenderGateway>();
 
@@ -61,7 +61,7 @@ namespace Graduation.Hackaton.VideoProcessing.Infrastructure
             return services;
         }
 
-        public static IServiceCollection AddWorkerEventManager<TWorker>(this IServiceCollection services, IConfiguration configuration, Type workerType, string queueName, bool isWorker)
+        public static IServiceCollection AddWorkerEventGateway<TWorker>(this IServiceCollection services, IConfiguration configuration, Type workerType, string queueName)
             where TWorker : class, IConsumer
         {
             services.AddScoped<IEventSenderGateway, MassTransitSenderGateway>();
