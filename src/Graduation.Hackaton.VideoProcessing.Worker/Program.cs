@@ -2,6 +2,7 @@
 using Graduation.Hackaton.VideoProcessing.Application;
 using Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.ProcessVideo;
 using Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.ProcessVideo.Boundaries;
+using Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.ProcessVideo.Definitions;
 using Graduation.Hackaton.VideoProcessing.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,21 +16,41 @@ namespace Graduation.Hackaton.VideoProcessing.Worker
     {
         private static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .AddCommandLine(args)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+
             var host = Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((context, configurationBuilder) =>
+                .ConfigureAppConfiguration(context =>
                 {
-                    context.Configuration = configurationBuilder.SetBasePath(context.HostingEnvironment.ContentRootPath)
-                                                                .AddJsonFile("appsettings.json", true, true)
-                                                                .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true)
-                                                                .AddEnvironmentVariables()
-                                                                .Build();
+                    context.AddConfiguration(configuration);
+
                 })
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddHostedService<Worker>();
+                    //services.AddHostedService<Worker>();
                     services.AddWorkerApplicationConfiguration();
                     services.AddLoggingGateway();
-                    services.AddWorkerEventGateway<ProcessVideoConsumer>(context.Configuration, typeof(ProcessVideoConsumer), nameof(ProcessVideoEvent));
+                    services.AddFileServer(context.Configuration);
+
+                    var input = new ProcessVideoInput
+                    {
+                        Entity = new Domain.Entities.VideoEntity
+                        {
+                            VideoPath = "Marvel_DOTNET_CSHARP.mp4",
+                            Name = "Marvel_DOTNET_CSHARP"
+                        },
+                        IntervalInSeconds = 20
+                    };
+
+                    var provider = services.BuildServiceProvider();
+                    
+                    var service = provider.GetRequiredService<IProcessVideoUseCase>();
+                    service.ProcessAsync(input, CancellationToken.None).Wait();
+                    //services.AddWorkerEventGateway<ProcessVideoConsumer>(context.Configuration, typeof(ProcessVideoConsumer), nameof(ProcessVideoEvent));
                 })
                 .Build();
 

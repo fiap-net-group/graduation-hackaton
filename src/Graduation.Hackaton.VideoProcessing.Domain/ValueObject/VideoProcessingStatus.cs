@@ -4,6 +4,7 @@
     {
         NotStarted,
         Processing,
-        Processed
+        Processed,
+        VideoNotFound
     }
 }

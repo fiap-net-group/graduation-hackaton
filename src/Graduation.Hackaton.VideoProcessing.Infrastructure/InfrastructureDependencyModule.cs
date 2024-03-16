@@ -12,6 +12,9 @@ using Graduation.Hackaton.VideoProcessing.Domain.Gateways.Repositories;
 using Graduation.Hackaton.VideoProcessing.Infrastructure.Database.Repositories;
 using Graduation.Hackaton.VideoProcessing.Domain.Gateways.VideoProcessingApi;
 using Graduation.Hackaton.VideoProcessing.Infrastructure.Integrations;
+using Azure.Storage.Blobs;
+using Graduation.Hackaton.VideoProcessing.Domain.Gateways.File;
+using Graduation.Hackaton.VideoProcessing.Infrastructure.File;
 
 namespace Graduation.Hackaton.VideoProcessing.Infrastructure
 {
@@ -23,6 +26,18 @@ namespace Graduation.Hackaton.VideoProcessing.Infrastructure
 
             return services;
         }
+
+        public static IServiceCollection AddFileServer(this IServiceCollection services, IConfiguration configuration)
+        {
+            var client = new BlobServiceClient(configuration.GetValue<string>("Gateways:File:ConnectionString", null))
+                                                            .GetBlobContainerClient(configuration.GetValue<string>("Gateways:File:ContainerName", null));
+
+            services.AddSingleton(client);
+            services.AddSingleton<IFileGateway, BlobFileGateway>();
+
+            return services;
+        }
+
 
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {

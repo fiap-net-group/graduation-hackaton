@@ -41,7 +41,7 @@ namespace Graduation.Hackaton.VideoProcessing.Application
 
         private static IServiceCollection AddMappers(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(SendVideoToProcessMapper));
+            services.AddAutoMapper(typeof(ProcessVideoMapper));
 
             return services;
         }

@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Graduation.Hackaton.VideoProcessing.Domain.Gateways.File.Boundaires;
 
 namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.ProcessVideo.Boundaries
 {
-    internal class ProcessVideoMapper
+    public sealed class ProcessVideoMapper : Profile
     {
+        public ProcessVideoMapper()
+        {
+            CreateMap<ProcessVideoInput, GetVideoInfoInput>()
+                .ConstructUsing(source => new GetVideoInfoInput(source.Entity.VideoPath));
+        }
     }
 }

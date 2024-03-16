@@ -2,9 +2,6 @@
 
 namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.ProcessVideo.Boundaries
 {
-    public sealed class ProcessVideoOutput
-    {
-        public VideoEntity Entity { get; set; }
-    }
+    public sealed record ProcessVideoOutput(VideoEntity Entity);
 }
     
