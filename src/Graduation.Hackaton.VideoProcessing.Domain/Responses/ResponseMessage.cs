@@ -3,6 +3,9 @@
     public enum ResponseMessage
     {
         UnexpectedError,
-        ValidationError
+        ValidationError,
+        InvalidStatus,
+        InvalidId,
+        NotEnabled
     }
 }
