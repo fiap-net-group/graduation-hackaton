@@ -7,17 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7D9645D8-B1A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AEC1B899-F734-4E91-A0A5-FA5A391BCFFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation.Hackaton.VideoProcessing.API", "src\Graduation.Hackaton.VideoProcessing.API\Graduation.Hackaton.VideoProcessing.API.csproj", "{26B2F46B-F9EB-47CE-B199-348483CC7DE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graduation.Hackaton.VideoProcessing.API", "src\Graduation.Hackaton.VideoProcessing.API\Graduation.Hackaton.VideoProcessing.API.csproj", "{26B2F46B-F9EB-47CE-B199-348483CC7DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation.Hackaton.VideoProcessing.Domain", "src\Graduation.Hackaton.VideoProcessing.Domain\Graduation.Hackaton.VideoProcessing.Domain.csproj", "{418CD92F-1822-43BF-BE6F-F5EAD6DEB2EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graduation.Hackaton.VideoProcessing.Domain", "src\Graduation.Hackaton.VideoProcessing.Domain\Graduation.Hackaton.VideoProcessing.Domain.csproj", "{418CD92F-1822-43BF-BE6F-F5EAD6DEB2EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation.Hackaton.VideoProcessing.Infrastructure", "src\Graduation.Hackaton.VideoProcessing.Infrastructure\Graduation.Hackaton.VideoProcessing.Infrastructure.csproj", "{3C1E85EB-E8F7-4C57-BF62-CFDAD5BC0030}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graduation.Hackaton.VideoProcessing.Infrastructure", "src\Graduation.Hackaton.VideoProcessing.Infrastructure\Graduation.Hackaton.VideoProcessing.Infrastructure.csproj", "{3C1E85EB-E8F7-4C57-BF62-CFDAD5BC0030}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation.Hackaton.VideoProcessing.Application", "src\Graduation.Hackaton.VideoProcessing.Application\Graduation.Hackaton.VideoProcessing.Application.csproj", "{A04F622D-6E1A-4469-8CE0-5E01D7A81D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graduation.Hackaton.VideoProcessing.Application", "src\Graduation.Hackaton.VideoProcessing.Application\Graduation.Hackaton.VideoProcessing.Application.csproj", "{A04F622D-6E1A-4469-8CE0-5E01D7A81D11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation.Hackaton.VideoProcessing.UnitTests", "tests\Graduation.Hackaton.VideoProcessing.UnitTests\Graduation.Hackaton.VideoProcessing.UnitTests.csproj", "{DB999661-FE09-41CF-969A-88CBFBE7A82A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graduation.Hackaton.VideoProcessing.UnitTests", "tests\Graduation.Hackaton.VideoProcessing.UnitTests\Graduation.Hackaton.VideoProcessing.UnitTests.csproj", "{DB999661-FE09-41CF-969A-88CBFBE7A82A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation.Hackaton.VideoProcessing.Worker", "src\Graduation.Hackaton.VideoProcessing.Worker\Graduation.Hackaton.VideoProcessing.Worker.csproj", "{96016E0B-7D70-4CFD-8C3B-640494255FFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graduation.Hackaton.VideoProcessing.Worker", "src\Graduation.Hackaton.VideoProcessing.Worker\Graduation.Hackaton.VideoProcessing.Worker.csproj", "{96016E0B-7D70-4CFD-8C3B-640494255FFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graduation.Hackaton.VideoProcessing.MVC", "src\Graduation.Hackaton.VideoProcessing.MVC\Graduation.Hackaton.VideoProcessing.MVC.csproj", "{B3B89384-E80F-4B8F-B6DE-BB07C0CF6558}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{96016E0B-7D70-4CFD-8C3B-640494255FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96016E0B-7D70-4CFD-8C3B-640494255FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96016E0B-7D70-4CFD-8C3B-640494255FFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3B89384-E80F-4B8F-B6DE-BB07C0CF6558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3B89384-E80F-4B8F-B6DE-BB07C0CF6558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3B89384-E80F-4B8F-B6DE-BB07C0CF6558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3B89384-E80F-4B8F-B6DE-BB07C0CF6558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{A04F622D-6E1A-4469-8CE0-5E01D7A81D11} = {7D9645D8-B1A0-4D30-86BE-9B2D3BEF7F97}
 		{DB999661-FE09-41CF-969A-88CBFBE7A82A} = {AEC1B899-F734-4E91-A0A5-FA5A391BCFFB}
 		{96016E0B-7D70-4CFD-8C3B-640494255FFA} = {7D9645D8-B1A0-4D30-86BE-9B2D3BEF7F97}
+		{B3B89384-E80F-4B8F-B6DE-BB07C0CF6558} = {7D9645D8-B1A0-4D30-86BE-9B2D3BEF7F97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0FEAABA-7D05-440A-A46B-06B7E28C961E}

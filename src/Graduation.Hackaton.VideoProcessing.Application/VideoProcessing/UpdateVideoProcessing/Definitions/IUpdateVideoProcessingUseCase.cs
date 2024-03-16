@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.UpdateVideoProcessing.Boundaries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.Update
 {
     public interface IUpdateVideoProcessingUseCase
     {
+        Task UpdateAsync(UpdateVideoProcessingInput input, CancellationToken cancellationToken);
     }
 }

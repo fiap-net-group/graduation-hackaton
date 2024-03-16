@@ -1,0 +1,60 @@
+﻿@model Graduation.Hackaton.VideoProcessing.MVC.Models.DetailsUploadsViewModel;
+
+@{
+    ViewData["Title"] = "Lista de Uploads";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Videos</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Created At
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (!Model.Videos.Any())
+            {
+                <tr>
+                    <td>
+                        Não há videos cadastrados
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model.Videos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateAt)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="#">Donwload</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

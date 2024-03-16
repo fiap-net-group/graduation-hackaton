@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Graduation.Hackaton.VideoProcessing.Domain.Entities;
 
 namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.UpdateVideoProcessing.Boundaries
 {
-    public class UpdateVideoProcessingInput
-    {
-    }
+    public sealed record UpdateVideoProcessingInput(VideoEntity value); 
 }
