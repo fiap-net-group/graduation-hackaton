@@ -2,6 +2,7 @@
 {
     public enum ResponseMessage
     {
-        UnexpectedError
+        UnexpectedError,
+        ValidationError
     }
 }

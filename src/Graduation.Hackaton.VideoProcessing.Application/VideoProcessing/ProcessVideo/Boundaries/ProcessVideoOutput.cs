@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Graduation.Hackaton.VideoProcessing.Domain.Entities;
 
 namespace Graduation.Hackaton.VideoProcessing.Application.VideoProcessing.ProcessVideo.Boundaries
 {
-    internal class ProcessVideoOutput
+    public sealed class ProcessVideoOutput
     {
+        public VideoEntity Entity { get; set; }
     }
 }
+    

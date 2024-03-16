@@ -4,6 +4,20 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Graduation.Hackaton.VideoProcessing.Application\Graduation.Hackaton.VideoProcessing.Application.csproj" />
+    <ProjectReference Include="..\Graduation.Hackaton.VideoProcessing.Domain\Graduation.Hackaton.VideoProcessing.Domain.csproj" />
+    <ProjectReference Include="..\Graduation.Hackaton.VideoProcessing.Infrastructure\Graduation.Hackaton.VideoProcessing.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>

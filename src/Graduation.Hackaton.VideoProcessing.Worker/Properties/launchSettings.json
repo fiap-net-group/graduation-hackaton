@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Graduation.Hackaton.VideoProcessing.Worker": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
